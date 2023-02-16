@@ -1,6 +1,14 @@
 import data
 import math
 
+# Part 1
+"""
+For part one, my function create_rectangle takes in 2 inputs of data type Point, and returns 1 output of data type 
+Rectangle. The purpose of this function is the use the two input points and create a Rectangle object. Since
+we do not know the top_left and bottom_right attributes, this function finds those based on the given points 
+to pass to the Rectangle object.
+"""
+
 
 def create_rectangle(point1: data.Point, point2: data.Point) -> data.Rectangle:
     if abs(point1.x) > abs(point2.x):
