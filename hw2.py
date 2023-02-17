@@ -44,3 +44,35 @@ def create_rectangle(point1: data.Point, point2: data.Point) -> data.Rectangle:
     bottom_right = (right, bottom)
 
     return data.Rectangle(top_left, bottom_right)
+
+
+#Part 2
+"""
+For part 2 my function shorter_duration_than takes in 2 inputs of data type Duration. This function returns one output 
+of type boolean. The purpose of this function is to compare the two inputs return True if the first duration is 
+smaller than the second duration, and false otherwise.
+"""
+def shorter_duration_than(dur1: data.Duration, dur2: data.Duration) -> bool:
+    if dur1.minutes < dur2.minutes:
+        return True
+    elif dur1.minutes > dur2.minutes:
+        return False
+    elif dur1.minutes == dur2.minutes:
+        if dur1.seconds < dur2.seconds:
+            return True
+        else:
+            return False
+
+
+def song_shorter_than(songs: list[data.Song], dur: data.Duration) -> list[data.Duration]:
+    new_song = []
+    for s in songs:
+        if s.duration.minutes < dur.minutes:
+            new_song.append(s)
+        elif s.duration.minutes == dur.minutes:
+            if s.duration.seconds < dur.seconds:
+                new_song.append(s)
+    return new_song
+
+
+
