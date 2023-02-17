@@ -1,34 +1,6 @@
 import math
 
 
-# Representation of a price in integer dollars and cents.
-class Price:
-    # Initialize a new Price object.
-    # input: dollars as an integer
-    # input: cents as an integer
-    def __init__(self, dollars: int, cents: int):
-        self.dollars = dollars
-        self.cents = cents
-
-
-    # Provide a developer-friendly string representation of the object.
-    # input: Price for which a string representation is desired.
-    # output: string representation
-    def __repr__(self) -> str:
-        return 'Price({}, {})'.format(self.dollars, self.cents)
-
-
-    # Compare the Price object with another value to determine equality.
-    # input: Price against which to compare
-    # input: Another value to compare to the Price
-    # output: boolean indicating equality
-    def __eq__(self, other) -> bool:
-        return (other is self or
-                type(other) == Price and
-                self.dollars == other.dollars and
-                self.cents == other.cents)
-
-
 # Representation of a two-dimensional point.
 class Point:
     # Initialize a new Point object.
@@ -57,6 +29,67 @@ class Point:
                 math.isclose(self.y, other.y))
 
 
+# Representation of a duration as minutes and seconds.
+class Duration:
+    # Initialize a new Duration object.
+    # input: minutes as an integer
+    # input: seconds as an integer
+    def __init__(self, minutes:int, seconds: int):
+        self.minutes = minutes
+        self.seconds = seconds
+
+
+    # Provide a developer-friendly string representation of the object.
+    # input: Duration for which a string representation is desired.
+    # output: string representation
+    def __repr__(self) -> str:
+        return 'Duration({}, {})'.format(self.minutes, self.seconds)
+
+
+    # Compare the Duration object with another value to determine equality.
+    # input: Duration against which to compare
+    # input: Another value to compare to the Duration
+    # output: boolean indicating equality
+    def __eq__(self, other) -> bool:
+        return (other is self or
+                type(other) == Duration and
+                self.minutes == other.minutes and
+                self.seconds == other.seconds)
+
+
+# Representation of a song.
+class Song:
+    # Initialize a new Song object.
+    # input: the song's artist as a string
+    # input: the song's title as a string
+    # input: the song's duration as a Duration object
+    def __init__(self, artist: str, title: str, duration:Duration):
+        self.artist = artist
+        self.title = title
+        self.duration = duration
+
+
+    # Provide a developer-friendly string representation of the object.
+    # input: Song for which a string representation is desired.
+    # output: string representation
+    def __repr__(self):
+        return "Song('{}', '{}', {})".format(self.artist, self.title,
+            self.duration)
+
+
+    # Compare the Song object with another value to determine equality.
+    # input: Song against which to compare
+    # input: Another value to compare to the Song
+    # output: boolean indicating equality
+    def __eq__(self, other):
+        return (self is other or
+                type(other) == Song and
+                self.artist == other.artist and
+                self.title == other.title and
+                self.duration == other.duration)
+
+
+
 # Representation of an axis-aligned rectangle.
 class Rectangle:
     # Initialize a new Rectangle object.
@@ -83,87 +116,3 @@ class Rectangle:
                 type(other) == Rectangle and
                 self.top_left == other.top_left and
                 self.bottom_right == other.bottom_right)
-
-
-# Representation of a circle.
-class Circle:
-    # Initialize a new Circle object.
-    # input: center as a Point
-    # input: radius as a float
-    def __init__(self, center: Point, radius: float):
-        self.center = center
-        self.radius = radius
-
-
-    # Provide a developer-friendly string representation of the object.
-    # input: Circle for which a string representation is desired.
-    # output: string representation
-    def __repr__(self) -> str:
-        return 'Circle({}, {})'.format(self.center, self.radius)
-
-
-    # Compare the Circle object with another value to determine equality.
-    # input: Circle against which to compare
-    # input: Another value to compare to the Circle
-    # output: boolean indicating equality
-    def __eq__(self, other) -> bool:
-        return (other is self or
-                type(other) == Circle and
-                self.center == other.center and
-                math.isclose(self.radius, other.radius))
-
-
-# Representation of a book.
-class Book:
-    # Initialize a new Book object.
-    # input: the book's authors as a list of strings
-    # input: the book's title as a string
-    def __init__(self, authors: list[str], title: str):
-        self.authors = authors
-        self.title = title
-
-
-    # Provide a developer-friendly string representation of the object.
-    # input: Book for which a string representation is desired.
-    # output: string representation
-    def __repr__(self):
-        return "Book({}, '{}')".format(self.authors, self.title)
-
-
-    # Compare the Book object with another value to determine equality.
-    # input: Book against which to compare
-    # input: Another value to compare to the Book
-    # output: boolean indicating equality
-    def __eq__(self, other):
-        return (self is other or
-                type(other) == Book and
-                self.authors == other.authors and
-                self.title == other.title)
-
-
-# Abbreviated representation of an employee.
-class Employee:
-    # Initialize a new Employee object.
-    # input: the employee's name as a string
-    # input: the employee's pay rate as an integer (for simplicity)
-    def __init__(self, name: str, pay_rate: int):
-        self.name = name
-        self.pay_rate = pay_rate
-
-
-    # Provide a developer-friendly string representation of the object.
-    # input: Employee for which a string representation is desired.
-    # output: string representation
-    def __repr__(self):
-        return "Employee('{}', {})".format(self.name, self.pay_rate)
-
-
-    # Compare the Employee object with another value to determine equality.
-    # input: Employee against which to compare
-    # input: Another value to compare to the Employee
-    # output: boolean indicating equality
-    def __eq__(self, other):
-        return (other is self or
-                type(other) == Employee and
-                self.name == other.name and
-                self.pay_rate == other.pay_rate)
