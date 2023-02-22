@@ -69,9 +69,35 @@ class TestCases(unittest.TestCase):
                 ['san luis obispo', 'pismo beach'],
                 ['atascadero', 'santa margarita'],
                 ['atascadero', 'creston']]
-        route = ['san luis obispo', 'atascadero']
+        route = ['san luis obispo', 'santa margarita', 'atascadero', 'creston']
+        check = hw2.validate_route(link, route)
+        self.assertEqual(check, True)
+
+    def test_validate_route2(self):
+        link = [['san luis obispo', 'santa margarita'],
+                ['san luis obispo', 'pismo beach'],
+                ['atascadero', 'santa margarita'],
+                ['atascadero', 'creston']]
+        route = ['san luis obispo', 'pismo beach', 'atascadero']
+        #route = ['san luis obispo', 'creston', 'atascadero']
         check = hw2.validate_route(link, route)
         self.assertEqual(check, False)
+
+
+    def test_longest_rep1(self):
+        nums = [1,1,1,2,7,8,5,4,6,8,6,4,4,4,4]
+        check = hw2.longest_repitition(nums)
+        self.assertEqual(check, 11)
+
+    def test_longest_rep2(self):
+        nums = [1,1,1,2,7,8,5,4,67,8,6,4,4,4]
+        check = hw2.longest_repitition(nums)
+        self.assertEqual(check, 0)
+
+    def test_longest_rep3(self):
+        nums = [1,1,2,7,8,5,5,5,5,4,67,8,6,4,4,4]
+        check = hw2.longest_repitition(nums)
+        self.assertEqual(check, 5)
 
 
 
