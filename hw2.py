@@ -81,6 +81,15 @@ def song_shorter_than(songs: list[data.Song], dur: data.Duration) -> list[data.S
                 new_song.append(s)
     return new_song
 
+
+"""
+Part 4
+For this part, my function running_time takes in 2 parameters, the first of type list[data.Song] and the second of
+type list. The function returns an output of data type Duration. The purpose of this function is to take the second 
+list, which acts as a playlist, and see how much time all the songs in the 'playlist' are in total by comparing
+to the first list.
+"""
+
 def running_time(songs: list[data.Song], play_list: list) -> data.Duration:
     time = data.Duration(0, 0)
     for k in play_list:
@@ -92,10 +101,112 @@ def running_time(songs: list[data.Song], play_list: list) -> data.Duration:
             time.minutes += 1
 
     return time
-
+"""
+Part 5
+For this function validate_route, it takes 2 parameters. One of type list[list[str]] and the other of type list[str]. 
+The output of this function is of the boolean type. The purpose of this function is to see if the route provided in 
+the second list is valid by comparing with the first list[list[str]].
+"""
 
 
 def validate_route(city_links: list[list[str]], route: list[str]) -> bool:
+    if len(city_links) == 0:
+        return False
+    elif len(route) == 0:
+        return True
+    elif len(route) == 1:
+        return True
+    for idx in range(1,len(route),1):
+        #if idx < len(route) - 1:
+        valid = False
+        for k in city_links:
+            if route[idx-1] in k and route[idx] in k:
+                valid = True
+        if valid == False:
+            return False
+    return valid
+
+
+def help(ints, start_range):
+    max = 0
+    current = 0
+    if start_range > len(ints) - 1:
+        return max
+    for int in range (start_range, len(ints)):
+        if int < len(ints) - 1:
+            if ints[int] == ints[int+1]:
+                current += 1
+                if current > max:
+                    max = current
+            if ints[int] != ints[int+1]:
+                return max
+        else:
+            return max
+
+
+"""
+Part 6
+For this function longest_repitition, it takes in one parameter of type list[int]. The function returns None if the 
+list is empty and returns the idx of the longest repition of numbers if the list is not empty. 
+"""
+
+def longest_repitition(ints: list[int]):
+    list_max = 0
+    max_idx = 0
+    if len(ints) == 0:
+        return None
+    for k in range(len(ints)):
+        if help(ints, k) > list_max:
+            a = help(ints, k)
+            list_max = a
+            max_idx = k
+    return max_idx
+
+"""
+First attempt 
+
+    count = 1
+    top = 0
+    if len(num) == 0:
+        return None
+    for idx in range(len(num)):
+        if idx < len(num) - 1:
+            print("idx:" + str(idx))
+            if num[idx] == num[idx + 1]:
+                count += 1
+                print(count)
+
+            if num[idx] != num[idx + 1]:
+                print("true")
+                if count < top:
+                    print("double true")
+                    top = count
+                    print("idx1" + str(idx) + "count" + str(top))
+                    idx_store = idx - (count - 1)
+                    print("store" + str(idx_store))
+                    count = 1
+
+                else:
+                    count = 1
+
+            if idx == len(num) - 2:
+                if count < top:
+                    print("double true")
+                    top = count
+                    print("idx1" + str(idx) + "count" + str(top))
+                    idx_store = idx - (count - 1)
+                return idx_store
+
+"""
+
+
+
+
+
+
+
+
+
 
 
 
