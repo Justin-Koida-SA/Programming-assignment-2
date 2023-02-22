@@ -63,8 +63,15 @@ def shorter_duration_than(dur1: data.Duration, dur2: data.Duration) -> bool:
         else:
             return False
 
+#Part 3
+"""
+For part three my function song_shorter_than takes in two inputs, the first of type list[data.Song] and the second of 
+data type Duration. The output of this function is lf list[data.Song]. The purpose of this function is to make a list
+of elements with data type Song from another list of elements with data type Song if the duration of the song is below
+a certain time.
 
-def song_shorter_than(songs: list[data.Song], dur: data.Duration) -> list[data.Duration]:
+"""
+def song_shorter_than(songs: list[data.Song], dur: data.Duration) -> list[data.Song]:
     new_song = []
     for s in songs:
         if s.duration.minutes < dur.minutes:
@@ -73,6 +80,25 @@ def song_shorter_than(songs: list[data.Song], dur: data.Duration) -> list[data.D
             if s.duration.seconds < dur.seconds:
                 new_song.append(s)
     return new_song
+
+def running_time(songs: list[data.Song], play_list: list) -> data.Duration:
+    time = data.Duration(0, 0)
+    for k in play_list:
+        if k < len(songs):
+            time.minutes = time.minutes + songs[k].duration.minutes
+            time.seconds = time.seconds + songs[k].duration.seconds
+        if time.seconds > 60:
+            time.seconds -= 60
+            time.minutes += 1
+
+    return time
+
+
+
+def validate_route(city_links: list[list[str]], route: list[str]) -> bool:
+
+
+
 
 
 
