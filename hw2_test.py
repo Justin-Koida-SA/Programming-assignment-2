@@ -31,7 +31,47 @@ class TestCases(unittest.TestCase):
         self.assertEqual(time, True)
 
     def test_song_shorter_than1(self):
-        list = [data.Song('Jimmy', 'School', data.Duration(4, 20))]
+        list = [data.Song('Jimmy', 'School', data.Duration(4, 20)), data.Song('Timmy', 'Dance', data.Duration(3, 15)),
+                data.Song("John", "Happy", data.Duration(5, 50)), data.Song("Paul", 'Sing', data.Duration(2, 13)),
+                data.Song("Phil", 'Hit', data.Duration(3, 45)), data.Song('Sam', 'Jump', data.Duration(4, 35))]
+        songs = hw2.song_shorter_than(list, data.Duration(4, 20))
+        self.assertEqual(songs, [data.Song('Timmy', 'Dance', data.Duration(3, 15)),
+                                 data.Song("Paul", 'Sing', data.Duration(2, 13)),
+                                 data.Song("Phil", 'Hit', data.Duration(3, 45))])
+
+    def test_song_shorter_than2(self):
+        list = [data.Song('Jimmy', 'School', data.Duration(4, 20)), data.Song('Timmy', 'Dance', data.Duration(3, 15)),
+                data.Song("John", "Happy", data.Duration(5, 50)), data.Song("Paul", 'Sing', data.Duration(2, 13)),
+                data.Song("Phil", 'Hit', data.Duration(3, 45)), data.Song('Sam', 'Jump', data.Duration(4, 35))]
+        songs = hw2.song_shorter_than(list, data.Duration(3, 20))
+        self.assertEqual(songs, [data.Song('Timmy', 'Dance', data.Duration(3, 15)),
+                                 data.Song("Paul", 'Sing', data.Duration(2, 13))])
+
+    def test_running_time1(self):
+        list = [data.Song('Jimmy', 'School', data.Duration(4, 20)), data.Song('Timmy', 'Dance', data.Duration(3, 15)),
+                data.Song("John", "Happy", data.Duration(5, 50)), data.Song("Paul", 'Sing', data.Duration(2, 13)),
+                data.Song("Phil", 'Hit', data.Duration(3, 45)), data.Song('Sam', 'Jump', data.Duration(4, 35))]
+        play_list = [0, 5, 4, 8, 3, 3]
+        running_time = hw2.running_time(list, play_list)
+        self.assertEqual(running_time, data.Duration(17, 6))
+
+    def test_running_time2(self):
+        list = [data.Song('Jimmy', 'School', data.Duration(4, 20)), data.Song('Timmy', 'Dance', data.Duration(3, 15)),
+                data.Song("John", "Happy", data.Duration(5, 50)), data.Song("Paul", 'Sing', data.Duration(2, 13)),
+                data.Song("Phil", 'Hit', data.Duration(3, 45)), data.Song('Sam', 'Jump', data.Duration(4, 35))]
+        play_list = [4, 2, 1, 5, 9, 3]
+        running_time = hw2.running_time(list, play_list)
+        self.assertEqual(running_time, data.Duration(19, 38))
+
+
+    def test_validate_route1(self):
+        link = [['san luis obispo', 'santa margarita'],
+                ['san luis obispo', 'pismo beach'],
+                ['atascadero', 'santa margarita'],
+                ['atascadero', 'creston']]
+        route = ['san luis obispo', 'atascadero']
+        check = hw2.validate_route(link, route)
+        self.assertEqual(check, False)
 
 
 
